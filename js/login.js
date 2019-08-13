@@ -6,5 +6,12 @@ let btnLogin = document.getElementById('btnLogin');
 
 btnLogin.addEventListener('click', function() {
   const data = new FormData(document.getElementById('loginForm'));
-  performPost(LOGIN_URL, data).then(response => console.log(response)).catch(error => console.log(error));
+  showLoading();
+  performPost(LOGIN_URL, data).then(response => {
+    console.log(response);
+  }).catch(error => {
+    console.log(error);
+  }).then(() => {
+    hideLoading();
+  });
 });

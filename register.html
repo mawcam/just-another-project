@@ -1,32 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Registrar</title>
+	<title>Registrarse</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/login/util.css">
+	<link rel="stylesheet" type="text/css" href="css/login/main.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h2>Registrarse</h2>
-  <form id="registerForm">
-    <div>
-      <label for="nombres">Nombres</label>
-      <input name="nombres" type="text">
-    </div>
-    <div>
-      <label for="apellidos">Apellidos</label>
-      <input name="apellidos" type="text">
-    </div>
-    <div>
-      <label for="correo">Correo</label>
-      <input name="correo" type="email">
-    </div>
-    <div>
-      <label for="password">Contraseña</label>
-      <input name="password" type="password">
-    </div>
-    <button id="btnRegister" type="button">Registrarse</button>
-  </form>
+	<div id="loadingContainer" class="loading-container">
+    <img class="loading" src="images/loading.svg" alt="Loading">
+  </div>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form id="registerForm" class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						Registrarse
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Ingrese sus nombres">
+						<input class="input100" type="text" name="nombres">
+						<span class="focus-input100" data-placeholder="Nombres"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Ingreses sus apellidos">
+						<input class="input100" type="text" name="apellidos">
+						<span class="focus-input100" data-placeholder="Apellidos"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Correo válido: a@b.c">
+						<input class="input100" type="text" name="correo">
+						<span class="focus-input100" data-placeholder="Correo"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Ingrese su contraseña">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Contraseña"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="button" id="btnRegister" class="login100-form-btn">
+								Registrar
+							</button>
+						</div>
+					</div>
+
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Ya tienes cuenta?
+						</span>
+
+						<a class="txt2" href="login.html">
+							Iniciar sesión
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+  <script src="js/login/main.js"></script>
+<!--===============================================================================================-->
+  <script src="js/common.js"></script>
+  <script src="js/fetch/fetch.js"></script>
   <script src="js/register.js"></script>
+
 </body>
 </html>

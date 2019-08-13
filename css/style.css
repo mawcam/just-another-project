@@ -1,0 +1,10 @@
+.loading-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(0,0,0,0.35);
+  display: none;
+}
