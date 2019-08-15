@@ -6,5 +6,10 @@
   align-items: center;
   position: absolute;
   background-color: rgba(0,0,0,0.35);
+  z-index: 1;
   display: none;
+}
+
+#alertContainer {
+  z-index: 2;
 }

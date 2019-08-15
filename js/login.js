@@ -11,10 +11,12 @@ btnLogin.addEventListener('click', function() {
     showLoading();
     performPost(LOGIN_URL, data).then(response => {
       console.log(response);
+      addAlertToPage('Ha iniciado sesión', 'success', function() {
+        //TODO: redirect to add contacts
+        hideLoading();
+      });
     }).catch(error => {
-      console.log(error);
-    }).then(() => {
-      hideLoading();
+      addAlertToPage('<strong>Error:</strong> Credenciales incorrectas', 'danger', () => hideLoading());
     });
   }
 });
