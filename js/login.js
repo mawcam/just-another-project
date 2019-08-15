@@ -5,13 +5,16 @@ let xhr = new XMLHttpRequest();
 let btnLogin = document.getElementById('btnLogin');
 
 btnLogin.addEventListener('click', function() {
-  const data = new FormData(document.getElementById('loginForm'));
-  showLoading();
-  performPost(LOGIN_URL, data).then(response => {
-    console.log(response);
-  }).catch(error => {
-    console.log(error);
-  }).then(() => {
-    hideLoading();
-  });
+  const validator = new Validator('loginForm');
+  if (validator.validate()) {
+    const data = new FormData(document.getElementById('loginForm'));
+    showLoading();
+    performPost(LOGIN_URL, data).then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error);
+    }).then(() => {
+      hideLoading();
+    });
+  }
 });
