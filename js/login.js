@@ -1,7 +1,5 @@
 const LOGIN_URL = 'https://sminnova.com/recurso_clase/api/usuario/login';
 
-let xhr = new XMLHttpRequest();
-
 let btnLogin = document.getElementById('btnLogin');
 
 btnLogin.addEventListener('click', function() {
@@ -11,9 +9,8 @@ btnLogin.addEventListener('click', function() {
     showLoading();
     performPost(LOGIN_URL, data).then(async response => {
       if (response instanceof Array){
-        await addAlertToPage('Ha iniciado sesión', 'success', function() {
-          //TODO: redirect to add contacts
-        });
+        if (response.length > 0) localStorage.currentUser = JSON.stringify(response[0]);
+        window.location.href = './contacts.html';
       } else {
         await addAlertToPage(`<strong>Error:</strong> ${response}`, 'danger');
       }
