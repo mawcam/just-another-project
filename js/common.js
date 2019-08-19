@@ -5,22 +5,24 @@ const hideLoading = () => loadingContainer.style.display = 'none';
 
 const showLoading = () => loadingContainer.style.display = 'flex';
 
+const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 function Validator(formId) {
   this.fields = Array.from(document.querySelectorAll(`#${formId} input`));
   this.messages = [];
   this.validate = function () {
     this.fields.forEach(f => {
-      if (!f.value) this.messages.push(`Debe ingresa el campo ${f.name} para iniciar sesión`);
+      if (!f.value) this.messages.push(`Debe ingresa el campo <strong>${f.name}</strong> para iniciar sesión`);
     });
     if (this.messages.length > 0) {
-      console.log({ messages: this.messages });
+      addAlertToPage(this.messages.join('<br>'), 'danger');
       return false;
     }
     return true;
   }
 }
 
-const addAlertToPage = async (message, color, callback, time = ALERT_DISMISS_TIME) => {
+const addAlertToPage = (message, color, callback, time = ALERT_DISMISS_TIME) => {
   const alert = `
     <div id="currentAlert" class="alert alert-${color} alert-dismissible fade show" role="alert">
       ${message}
@@ -30,9 +32,9 @@ const addAlertToPage = async (message, color, callback, time = ALERT_DISMISS_TIM
     </div>
   `;
   document.getElementById('alertContainer').innerHTML = alert;
-  await setTimeout(function(){
+  timeout(time).then(() => {
     document.getElementById('currentAlert').classList.remove('show');
     document.getElementById('currentAlert').classList.add('hide');
     if (callback) callback();
-  },time);
+  });
 };

@@ -9,14 +9,16 @@ btnLogin.addEventListener('click', function() {
   if (validator.validate()) {
     const data = new FormData(document.getElementById('loginForm'));
     showLoading();
-    performPost(LOGIN_URL, data).then(response => {
-      console.log(response);
-      addAlertToPage('Ha iniciado sesión', 'success', function() {
-        //TODO: redirect to add contacts
-        hideLoading();
-      });
-    }).catch(error => {
-      addAlertToPage('<strong>Error:</strong> Credenciales incorrectas', 'danger', () => hideLoading());
-    });
+    performPost(LOGIN_URL, data).then(async response => {
+      if (response instanceof Array){
+        await addAlertToPage('Ha iniciado sesión', 'success', function() {
+          //TODO: redirect to add contacts
+        });
+      } else {
+        await addAlertToPage(`<strong>Error:</strong> ${response}`, 'danger');
+      }
+    }).catch(async error => {
+      await addAlertToPage(`<strong>Error:</strong> ${error}`, 'danger');
+    }).then(() => hideLoading());
   }
 });

@@ -10,14 +10,16 @@ const redirectToLogin = () => {
 }
 
 btnRegister.addEventListener('click', function() {
-  const data = new FormData(document.getElementById('registerForm'));
-  showLoading();
-  performPost(REGISTER_URL, data).then(response => {
-    console.log({ response });
-    const { estado } = response;
-    addAlertToPage(estado.text , 'success', redirectToLogin);
-  }).catch(error => {
-    console.log({ error });
-    addAlertToPage(error , 'danger', redirectToLogin);
-  });
+  const validator = new Validator('registerForm');
+  if (validator.validate()) {
+    const data = new FormData(document.getElementById('registerForm'));
+    showLoading();
+    performPost(REGISTER_URL, data).then(async response => {
+      console.log({ response });
+      const { estado } = response;
+      await addAlertToPage(estado.text , 'success', redirectToLogin);
+    }).catch(async error => {
+      await addAlertToPage(`<strong>Error:</strong> ${error}`, 'danger');
+    }).then(() => hideLoading());
+  }
 });
