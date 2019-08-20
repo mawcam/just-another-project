@@ -1,5 +1,7 @@
 const LOGIN_URL = 'https://sminnova.com/recurso_clase/api/usuario/login';
 
+if (getCurrentUser()) window.location.href = './contacts.html';
+
 let btnLogin = document.getElementById('btnLogin');
 
 btnLogin.addEventListener('click', function() {

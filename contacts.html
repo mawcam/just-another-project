@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/metisMenu.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/slicknav.min.css">
-    <!-- amchart css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <!-- others css -->
     <link rel="stylesheet" href="assets/css/typography.css">
     <link rel="stylesheet" href="assets/css/default-css.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -51,6 +46,26 @@
         <!-- sidebar menu area end -->
         <!-- main content area start -->
         <div class="main-content">
+            <div class="header-area">
+                <div class="row align-items-center">
+                    <!-- nav and search button -->
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <!-- profile info & task notification -->
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li id="btnSignOut" class="settings-btn">
+                                <i class="fa fa-sign-out"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <!-- page title area end -->
             <div class="main-content-inner">
                 <div class="row">
@@ -73,7 +88,7 @@
                                         <input type="text" class="form-control" id="phone" name="telefono" placeholder="Ingrese el teléfono" maxlength="9">
                                     </div>
                                     <div class="text-right">
-                                        <button type="button" class="btn btn-primary mt-4 pr-4 pl-4">Agregar</button>
+                                        <button id="btnAddContact" type="button" class="btn btn-primary mt-4 pr-4 pl-4">Agregar</button>
                                     </div>
                                 </form>
                             </div>
@@ -83,15 +98,18 @@
                     <!-- Active Items start -->
                     <div class="col-md-6 mt-5">
                         <div class="card">
-                            <div class="card-body">
+                            <div id="fillState" class="card-body">
                                 <h4 class="header-title">Contactos</h4>
-                                <ul id="contactsContainer" class="list-group">
-                                    <li class="list-group-item">Cras justo odio</li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
-                                </ul>
+                                <div id="searchContainer" class="search-box mb-3" style="width: 100%;" onsubmit="return false;">
+                                    <form style="width: 100%;">
+                                        <input id="searchContact" type="text" placeholder="Buscar..." style="width: 100%;">
+                                        <i class="ti-search"></i>
+                                    </form>
+                                </div>
+                                <ul id="contactsContainer" class="list-group"></ul>
+                            </div>
+                            <div id="emptyState" class="card-body text-center" style="display: none;">
+                                <h2>Aún no tiene contactos</h2>
                             </div>
                         </div>
                     </div>

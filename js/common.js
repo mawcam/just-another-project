@@ -7,6 +7,15 @@ const showLoading = () => loadingContainer.style.display = 'flex';
 
 const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+const getCurrentUser = () => {
+  let currentUser = localStorage.currentUser;
+  return currentUser ? JSON.parse(currentUser) : null;
+}
+
+const removeCurrentUser = () => {
+  localStorage.currentUser = null;
+}
+
 function Validator(formId) {
   this.fields = Array.from(document.querySelectorAll(`#${formId} input`));
   this.messages = [];
@@ -37,4 +46,9 @@ const addAlertToPage = (message, color, callback, time = ALERT_DISMISS_TIME) => 
     document.getElementById('currentAlert').classList.add('hide');
     if (callback) callback();
   });
+};
+
+const clearForm = formId => {
+  const fields = Array.from(document.querySelectorAll(`#${formId} input`));
+  fields.forEach(f => f.value = '');
 };
