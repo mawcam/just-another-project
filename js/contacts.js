@@ -62,7 +62,14 @@ function renderContactList(list) {
     listUI.innerHTML += `
     <li class="list-group-item">
       ${data.nombres} ${data.apellidos}
-      <a href="javascript:showContactDetail('${data.telefono}');" class="pull-right btnDetail">Ver más</a>
+      <a
+        href="javascript:showContactDetail('${data.nombres}','${data.apellidos}','${data.telefono}');"
+        class="pull-right btnDetail"
+        data-toggle="modal"
+        data-target="#contactDetailModal"
+      >
+      Ver más
+      </a>
     </li>
     `;
   });
@@ -74,7 +81,13 @@ function addContactToList(data) {
   renderContactList(contacts);
 }
 
-function showContactDetail(id) {
-  //TODO: Hacer el modal
-  console.log({ id });
+function showContactDetail(firstnames,lastnames,phone) {
+  console.log("doing this");
+  const content = document.getElementById('modalBody');
+  content.innerHTML = `
+    <h6>Nombres:</h6><p>${firstnames}</p>
+    <h6>Apellidos:</h6><p>${lastnames}</p>
+    <h6>Teléfono:</h6><p>${phone}</p>
+  `;
+  document.getElementById('contactDetailModal').modal('show');
 }

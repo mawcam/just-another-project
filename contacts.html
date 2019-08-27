@@ -59,7 +59,7 @@
                     <!-- profile info & task notification -->
                     <div class="col-md-6 col-sm-4 clearfix">
                         <ul class="notification-area pull-right">
-                            <li id="btnSignOut" class="settings-btn">
+                            <li id="btnSignOut" class="settings-btn" title="Cerrar Sesión">
                                 <i class="fa fa-sign-out"></i>
                             </li>
                         </ul>
@@ -112,6 +112,20 @@
                                 <h2>Aún no tiene contactos</h2>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="contactDetailModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Contacto</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div id="modalBody" class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
