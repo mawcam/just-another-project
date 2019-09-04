@@ -98,7 +98,7 @@
                     <!-- Active Items start -->
                     <div class="col-md-6 mt-5">
                         <div class="card">
-                            <div id="fillState" class="card-body">
+                            <div id="fillState" class="card-body" style="display: none;">
                                 <h4 class="header-title">Contactos</h4>
                                 <div id="searchContainer" class="search-box mb-3" style="width: 100%;" onsubmit="return false;">
                                     <form style="width: 100%;">
@@ -152,8 +152,11 @@
     <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
+    
+	<script src="js/models/user.js"></script>
+	<script src="js/models/validator.js"></script>
     <script src="js/common.js"></script>
-    <script src="js/fetch/fetch.js"></script>
+    <script src="js/services/rest-service.js"></script>
     <script src="js/contacts.js"></script>
 </body>
 

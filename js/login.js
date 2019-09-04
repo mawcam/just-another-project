@@ -1,6 +1,6 @@
 const LOGIN_URL = 'https://sminnova.com/recurso_clase/api/usuario/login';
 
-if (getCurrentUser()) window.location.href = './contacts.html';
+if (activeUser.getActiveUser()) window.location.href = './contacts.html';
 
 let btnLogin = document.getElementById('btnLogin');
 
@@ -11,7 +11,7 @@ btnLogin.addEventListener('click', function() {
     showLoading();
     performPost(LOGIN_URL, data).then(async response => {
       if (response instanceof Array){
-        if (response.length > 0) localStorage.currentUser = JSON.stringify(response[0]);
+        if (response.length > 0) activeUser.storeUser(response[0]);
         window.location.href = './contacts.html';
       } else {
         await addAlertToPage(`<strong>Error:</strong> ${response}`, 'danger');

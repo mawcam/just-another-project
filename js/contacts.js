@@ -1,18 +1,23 @@
 const CONTACTS_URL = 'https://sminnova.com/recurso_clase/api/contacto/listado';
 const ADD_CONTACT_URL = 'https://sminnova.com/recurso_clase/api/contacto/agregar';
 
-const user = getCurrentUser();
-
 let contacts = [];
 
-if (!user) window.location.href = './login.html';
+showLoading();
 
-/*
-performPost(CONTACTS_URL, { id: user.id }).then(response => {
-  //TODO: decirle al profe que no funciona el endpoint
-  console.log({ response });
-});
-*/
+if (!activeUser.getActiveUser()) window.location.href = './login.html';
+
+const data = new FormData();
+data.append('id', activeUser.getActiveUser().id);
+performPost(CONTACTS_URL, data).then(response => {
+  contacts = response.filter(e => e.nombres && e.apellidos);
+  renderContactList(response);
+  checkContactsCardState();
+  hideLoading();
+}).catch(async error => {
+  await addAlertToPage(`<strong>Error:</strong> ${error}`, 'danger');
+}).then(() => hideLoading());
+
 
 checkContactsCardState();
 
@@ -21,7 +26,7 @@ btnAddContact.addEventListener('click', function() {
   const validator = new Validator('addContactForm');
   if (validator.validate()) {
     const data = new FormData(document.getElementById('addContactForm'));
-    data.append('id_usuario', user.id);
+    data.append('id_usuario', activeUser.getActiveUser().id);
     showLoading();
     performPost(ADD_CONTACT_URL, data).then(async response => {
       addContactToList(Object.fromEntries(data));
@@ -34,12 +39,12 @@ btnAddContact.addEventListener('click', function() {
 });
 
 document.getElementById('btnSignOut').addEventListener('click', function() {
-  removeCurrentUser();
+  activeUser.signOut();
   window.location.href = './login.html';
 });
 
 const searchContact = document.getElementById('searchContact');
-searchContact.addEventListener('input', function(e) {
+searchContact.addEventListener('input', function() {
   const search = this.value;
   const results = contacts.filter(c => `${c.nombres} ${c.apellidos}`.toLowerCase().includes(search.toLowerCase()));
   renderContactList(results);
@@ -76,7 +81,7 @@ function renderContactList(list) {
 }
 
 function addContactToList(data) {
-  contacts = contacts.concat(data);
+  contacts = [data, ...contacts];
   checkContactsCardState();
   renderContactList(contacts);
 }

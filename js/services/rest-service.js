@@ -19,7 +19,7 @@ const performGet = url => {
       }
     }
   });
-}
+};
 
 const performPost = (url, data) => {
   return new Promise((res, rej) => {
@@ -44,4 +44,4 @@ const performPost = (url, data) => {
       }
     }
   });
-}
+};
