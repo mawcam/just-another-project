@@ -48,7 +48,7 @@ function initializeSearchContacts() {
   searchContact.addEventListener('input', function() {
     const search = this.value;
     const results = contacts.filter(c => `${c.nombres} ${c.apellidos}`.toLowerCase().includes(search.toLowerCase()));
-    renderContactList(results);
+    renderContactList(results, search);
   });
 }
 
@@ -70,22 +70,26 @@ function checkContactsCardState() {
   }
 }
 
-function renderContactList(list) {
+function renderContactList(list, query = '') {
   const listUI = document.getElementById('contactsContainer');
   listUI.innerHTML = '';
-  list.forEach(data => {
-    listUI.innerHTML += `
-    <li class="list-group-item">
-      ${data.nombres} ${data.apellidos}
-      <a
-        href="javascript:showContactDetail('${data.nombres}','${data.apellidos}','${data.telefono}');"
-        class="pull-right btnDetail"
-      >
-      Ver más
-      </a>
-    </li>
-    `;
-  });
+  if (list.length === 0) {
+    listUI.innerHTML = `No hay resultados para "${query}".`;
+  } else {
+    list.forEach(data => {
+      listUI.innerHTML += `
+      <li class="list-group-item">
+        ${data.nombres} ${data.apellidos}
+        <a
+          href="javascript:showContactDetail('${data.nombres}','${data.apellidos}','${data.telefono}');"
+          class="pull-right btnDetail"
+        >
+        Ver más
+        </a>
+      </li>
+      `;
+    });
+  }
 }
 
 function addContactToList(data) {
