@@ -12,7 +12,7 @@ const performGet = url => {
           const response = JSON.parse(xhr.response);
           res(response);
         } else {
-          const errorMessage = 'Algo salió mal';
+          const errorMessage = 'Algo salió mal, intente nuevamente.';
           rej(errorMessage);
         }
       }
@@ -35,7 +35,7 @@ const performPost = (url, data) => {
             rej(error.message);
           }
         } else {
-          const errorMessage = 'Algo salió mal';
+          const errorMessage = 'Algo salió mal, intente nuevamente.';
           rej(errorMessage);
         }
       }

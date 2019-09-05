@@ -1,5 +1,4 @@
 const ALERT_DISMISS_TIME = 1500;
-const activeUser = new User();
 let loadingContainer = document.getElementById('loadingContainer');
 
 const hideLoading = () => loadingContainer.style.display = 'none';

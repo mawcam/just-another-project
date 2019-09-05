@@ -5,10 +5,11 @@ let contacts = [];
 
 showLoading();
 
-if (!activeUser.getActiveUser()) window.location = './login.html';
+if (!Authenticator.isUserLogged()) window.location = './login.html';
+const { id } = Authenticator.getActiveUser();
 
 const data = new FormData();
-data.append('id', activeUser.getActiveUser().id);
+data.append('id', id);
 performPost(CONTACTS_URL, data).then(response => {
   if (response instanceof Array) {
     contacts = response.filter(e => e.nombres && e.apellidos);
@@ -25,7 +26,7 @@ btnAddContact.addEventListener('click', function() {
   const validator = new Validator('addContactForm');
   if (validator.validate()) {
     const data = new FormData(document.getElementById('addContactForm'));
-    data.append('id_usuario', activeUser.getActiveUser().id);
+    data.append('id_usuario', id);
     showLoading();
     performPost(ADD_CONTACT_URL, data).then(async response => {
       addContactToList(Object.fromEntries(data));
@@ -38,7 +39,7 @@ btnAddContact.addEventListener('click', function() {
 });
 
 document.getElementById('btnSignOut').addEventListener('click', function() {
-  activeUser.signOut();
+  Authenticator.signOut();
   window.location = './login.html';
 });
 
