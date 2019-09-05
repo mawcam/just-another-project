@@ -9,7 +9,6 @@ const performGet = url => {
     xhr.onreadystatechange = () => {
       if(xhr.readyState === XMLHttpRequest.DONE){
         if(xhr.status === 200){
-          console.log({ getResponse: xhr.response});
           const response = JSON.parse(xhr.response);
           res(response);
         } else {
@@ -34,7 +33,6 @@ const performPost = (url, data) => {
             const response = JSON.parse(xhr.response);
             res(response);
           } catch (error) {
-            console.log({ error });
             rej(error.message);
           }
         } else {

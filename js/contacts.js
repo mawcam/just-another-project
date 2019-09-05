@@ -52,17 +52,11 @@ function initializeSearchContacts() {
 }
 
 function checkContactsCardState() {
-  console.log({ contacts });
-  
   if (contacts.length > 0){
-    //document.getElementById('fillState').style.display = 'block';
-    //document.getElementById('emptyState').style.display = 'none';
     document.getElementById('displayContacts').innerHTML = renderFilledState();
     initializeSearchContacts();
     renderContactList(contacts);
   } else {
-    //document.getElementById('fillState').style.display = 'none';
-    //document.getElementById('emptyState').style.display = 'block';
     document.getElementById('displayContacts').innerHTML = renderEmptyState();
   }
 }
@@ -94,7 +88,6 @@ function addContactToList(data) {
 }
 
 function showContactDetail(firstnames,lastnames,phone) {
-  console.log("doing this");
   const content = document.getElementById('modalBody');
   content.innerHTML = `
     <h6>Nombres:</h6><p>${firstnames}</p>
