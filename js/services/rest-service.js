@@ -28,7 +28,6 @@ const performPost = (url, data) => {
     xhr.onreadystatechange = () => {
       if(xhr.readyState === XMLHttpRequest.DONE){
         if(xhr.status === 200){
-          console.log({ postResponse: xhr.response});
           try {
             const response = JSON.parse(xhr.response);
             res(response);

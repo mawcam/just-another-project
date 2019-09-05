@@ -71,8 +71,6 @@ function renderContactList(list) {
       <a
         href="javascript:showContactDetail('${data.nombres}','${data.apellidos}','${data.telefono}');"
         class="pull-right btnDetail"
-        data-toggle="modal"
-        data-target="#contactDetailModal"
       >
       Ver más
       </a>
@@ -94,7 +92,7 @@ function showContactDetail(firstnames,lastnames,phone) {
     <h6>Apellidos:</h6><p>${lastnames}</p>
     <h6>Teléfono:</h6><p>${phone}</p>
   `;
-  document.getElementById('contactDetailModal').modal('show');
+  $('#contactDetailModal').modal('show');
 }
 
 function renderEmptyState() {
