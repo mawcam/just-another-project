@@ -52,11 +52,19 @@ function initializeSearchContacts() {
   });
 }
 
+function initializeContactsContainer() {
+  $('#contactsContainer').slimScroll({
+    height: '33vh',
+    alwaysVisible: true,
+  });
+}
+
 function checkContactsCardState() {
   if (contacts.length > 0){
     document.getElementById('displayContacts').innerHTML = renderFilledState();
     initializeSearchContacts();
     renderContactList(contacts);
+    initializeContactsContainer();
   } else {
     document.getElementById('displayContacts').innerHTML = renderEmptyState();
   }
@@ -106,7 +114,7 @@ function renderEmptyState() {
 
 function renderFilledState() {
   return `
-    <div id="fillState" class="card-body">
+    <div id="fillState" class="card-body" style="max-height: 425px;">
         <h4 class="header-title">Contactos</h4>
         <div id="searchContainer" class="search-box mb-3" style="width: 100%;" onsubmit="return false;">
             <form style="width: 100%;">
