@@ -10,10 +10,12 @@ if (!activeUser.getActiveUser()) window.location.href = './login.html';
 const data = new FormData();
 data.append('id', activeUser.getActiveUser().id);
 performPost(CONTACTS_URL, data).then(response => {
-  contacts = response.filter(e => e.nombres && e.apellidos);
-  renderContactList(response);
-  checkContactsCardState();
-  hideLoading();
+  if (response instanceof Array) {
+    contacts = response.filter(e => e.nombres && e.apellidos);
+    renderContactList(response);
+    checkContactsCardState();
+    hideLoading();
+  }
 }).catch(async error => {
   await addAlertToPage(`<strong>Error:</strong> ${error}`, 'danger');
 }).then(() => hideLoading());

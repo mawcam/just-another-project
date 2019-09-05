@@ -9,15 +9,15 @@ btnLogin.addEventListener('click', function() {
   if (validator.validate()) {
     const data = new FormData(document.getElementById('loginForm'));
     showLoading();
-    performPost(LOGIN_URL, data).then(async response => {
+    performPost(LOGIN_URL, data).then(response => {
       if (response instanceof Array){
         if (response.length > 0) activeUser.storeUser(response[0]);
-        window.location.href = './contacts.html';
+        window.location = './contacts.html';
       } else {
-        await addAlertToPage(`<strong>Error:</strong> ${response}`, 'danger');
+        addAlertToPage(`<strong>Error:</strong> ${response}`, 'danger');
       }
-    }).catch(async error => {
-      await addAlertToPage(`<strong>Error:</strong> ${error}`, 'danger');
+    }).catch(error => {
+      addAlertToPage(`<strong>Error:</strong> ${error}`, 'danger');
     }).then(() => hideLoading());
   }
 });
