@@ -28,3 +28,5 @@ const clearForm = formId => {
   const fields = Array.from(document.querySelectorAll(`#${formId} input`));
   fields.forEach(f => f.value = '');
 };
+
+const onlyNumbers = value => value.replace(/[^(\d|.)]/g, '').replace(/(\..*)\./g, '$1');
