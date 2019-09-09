@@ -38,11 +38,6 @@ btnAddContact.addEventListener('click', function() {
   }
 });
 
-document.getElementById('btnSignOut').addEventListener('click', function() {
-  Authenticator.signOut();
-  window.location = './login.html';
-});
-
 function initializeSearchContacts() {
   const searchContact = document.getElementById('searchContact');
   searchContact.addEventListener('input', function() {
