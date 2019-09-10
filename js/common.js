@@ -31,7 +31,10 @@ const clearForm = formId => {
 
 const onlyNumbers = value => value.replace(/[^(\d|.)]/g, '').replace(/(\..*)\./g, '$1');
 
-document.getElementById('btnSignOut').addEventListener('click', function() {
-  Authenticator.signOut();
-  window.location = './login.html';
-});
+const signOutElement = document.getElementById('btnSignOut');
+if (signOutElement) {
+  signOutElement.addEventListener('click', function() {
+    Authenticator.signOut();
+    window.location = './login.html';
+  });
+}

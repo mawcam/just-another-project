@@ -37,8 +37,9 @@ function initializeSearchContacts(contacts) {
 function renderContactList(list, query = '') {
   const content = list.reduce((acc, val) => `${acc}${renderRow(val)}`, '');
   const listUI = document.getElementById('contactsList');
+  console.log({ list });
   listUI.innerHTML = '';
-  if (list.length === 0) listUI = `No hay resultados para "${query}".`;
+  if (list.length === 0) listUI.innerHTML = `No hay resultados para "${query}".`;
   else {
     listUI.innerHTML = content;
     const liElements = Array.from(document.getElementsByClassName('list-group-item-action'));

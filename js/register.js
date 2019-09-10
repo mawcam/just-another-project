@@ -9,7 +9,7 @@ btnRegister.addEventListener('click', function() {
     performPost(REGISTER_URL, data).then(response => {
       addAlertToPage(response , 'success', () => window.location = 'login.html');
     }).catch(error => {
-      addAlertToPage(`<strong>Error:</strong> ${error}`, 'danger');
-    }).then(() => hideLoading());
+      addAlertToPage(`<strong>Error:</strong> ${error}`, 'danger', () => hideLoading());
+    });
   }
 });
