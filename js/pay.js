@@ -64,9 +64,12 @@ btnPay.addEventListener('click', function() {
   const data = new FormData(document.getElementById('paymentForm'));
   data.append('id', id);
   data.append('contacto_id', selectedContact.id);
-  showLoading();
-  timeout(2000).then(() => {
-    hideLoading();
-    addAlertToPage(`Transferencia realizada a <b>${nombres} ${apellidos}</b> con éxito.`, 'success');
-  });
+  const validator = new Validator('paymentForm');
+  if (validator.validate()){
+    showLoading();
+    timeout(2000).then(() => {
+      hideLoading();
+      addAlertToPage(`Transferencia realizada a <b>${nombres} ${apellidos}</b> con éxito.`, 'success');
+    });
+  }
 });
