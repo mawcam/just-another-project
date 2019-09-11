@@ -1,4 +1,5 @@
 const CONTACTS_URL = 'https://sminnova.com/recurso_clase/api/contacto/listado';
+const DO_PAY_URL = 'https://sminnova.com/recurso_clase/api/contacto/pago';
 
 if (!Authenticator.isUserLogged()) window.location = './login.html';
 const { id } = Authenticator.getActiveUser();
@@ -8,7 +9,7 @@ let selectedContact = {};
 showLoading();
 
 const data = new FormData();
-data.append('id', id);
+data.append('id', id)
 performPost(CONTACTS_URL, data).then(response => {
   if (response instanceof Array) {
     const contacts = response.filter(e => e.nombres && e.apellidos);
@@ -54,23 +55,31 @@ function renderContactList(list, query = '') {
 
 const btnSelect = document.getElementById('btnSelect');
 btnSelect.addEventListener('click', function() {
-  const { nombres, apellidos } = selectedContact;
+  const { nombres, apellidos, telefono } = selectedContact;
   document.getElementById('contact').value = `${nombres} ${apellidos}`;
+  document.getElementById('phone').value = telefono;
 });
 
 const btnPay = document.getElementById('btnPay');
 btnPay.addEventListener('click', function() {
-  const { nombres, apellidos } = selectedContact;
-  const data = new FormData(document.getElementById('paymentForm'));
-  data.append('id', id);
-  data.append('contacto_id', selectedContact.id);
   const validator = new Validator('paymentForm');
   if (validator.validate()){
     showLoading();
-    timeout(2000).then(() => {
+    const { nombres, apellidos, telefono, id_usuario } = selectedContact;
+    const data = {
+      nombres,
+      apellidos,
+      telefono,
+      id_usuario,
+      monto: document.getElementById('amount').value,
+      fecha: getCurrentDate()
+    };
+    const formData = new FormData();
+    Object.keys(data).forEach(k => formData.append(k, data[k]));
+    performPost(DO_PAY_URL, formData).then(response => {
       hideLoading();
       addAlertToPage(`Transferencia realizada a <b>${nombres} ${apellidos}</b> con éxito.`, 'success');
-      console.log({ selectedContact });
-    });
+      console.log({ response });
+    }).catch(error => hideLoading());
   }
 });

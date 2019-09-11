@@ -1,6 +1,14 @@
 const ALERT_DISMISS_TIME = 1500;
 let loadingContainer = document.getElementById('loadingContainer');
 
+const getCurrentDate = () => {
+  const date = new Date();
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = date.getMonth().toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
 const hideLoading = () => loadingContainer.style.display = 'none';
 
 const showLoading = () => loadingContainer.style.display = 'flex';
