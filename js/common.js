@@ -11,9 +11,6 @@ const addAlertToPage = (message, color, callback, time = ALERT_DISMISS_TIME) => 
   const alert = `
     <div id="currentAlert" class="alert alert-${color} alert-dismissible fade show" role="alert">
       ${message}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span class="fa fa-times"></span>
-      </button>
     </div>
   `;
   document.getElementById('alertContainer').innerHTML = alert;

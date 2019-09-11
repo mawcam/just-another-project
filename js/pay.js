@@ -70,6 +70,7 @@ btnPay.addEventListener('click', function() {
     timeout(2000).then(() => {
       hideLoading();
       addAlertToPage(`Transferencia realizada a <b>${nombres} ${apellidos}</b> con éxito.`, 'success');
+      console.log({ selectedContact });
     });
   }
 });
