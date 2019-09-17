@@ -79,7 +79,7 @@ btnPay.addEventListener('click', function() {
     performPost(DO_PAY_URL, formData).then(response => {
       hideLoading();
       addAlertToPage(`Transferencia realizada a <b>${nombres} ${apellidos}</b> con éxito.`, 'success');
-      console.log({ response });
+      window.location.reload();
     }).catch(error => hideLoading());
   }
 });
