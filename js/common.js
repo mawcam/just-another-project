@@ -2,7 +2,12 @@ const ALERT_DISMISS_TIME = 1500;
 let loadingContainer = document.getElementById('loadingContainer');
 
 const getCurrentDate = () => {
-  const date = new Date();
+  const ms = new Date().getTime();
+  return msToDate(ms);
+}
+
+const msToDate = ms => {
+  const date = new Date(ms);
   const day = date.getDate().toString().padStart(2, '0');
   const month = date.getMonth().toString().padStart(2, '0');
   const year = date.getFullYear();

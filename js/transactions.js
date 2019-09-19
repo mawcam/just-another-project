@@ -18,7 +18,9 @@ performPost(MOVEMENT_PAY_URL, data).then(response => {
 });
 
 function comp(a,b) {
-  const cmp = b.fecha.localeCompare(a.fecha);
+  const bDate = b.fecha.includes('/') ? b.fecha : msToDate(+b.fecha);
+  const aDate = a.fecha.includes('/') ? a.fecha : msToDate(+a.fecha);
+  const cmp = bDate.localeCompare(aDate);
   return cmp === 0 ? b.id.localeCompare(a.id) : cmp;
 }
 
@@ -30,7 +32,7 @@ function renderTable(list) {
       <td>${m.nombre_contacto}</td>
       <td>${m.telefono}</td>
       <td style="text-align: right">S/. ${parseInt(m.monto, 10).toFixed(2)}</td>
-      <td>${m.fecha}</td>
+      <td>${m.fecha.includes('/') ? m.fecha : msToDate(+m.fecha)}</td>
   </tr>
   `).join('');
 }
