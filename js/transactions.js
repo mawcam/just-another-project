@@ -17,8 +17,13 @@ performPost(MOVEMENT_PAY_URL, data).then(response => {
   hideLoading();
 });
 
+function comp(a,b) {
+  const cmp = b.fecha.localeCompare(a.fecha);
+  return cmp === 0 ? b.id.localeCompare(a.id) : cmp;
+}
+
 function renderTable(list) {
-  const sorted = list.sort((a, b) => b.fecha.localeCompare(a.fecha));
+  const sorted = list.sort(comp);
   return sorted.map(m => `
   <tr>
       <th scope="row">${m.id}</th>
